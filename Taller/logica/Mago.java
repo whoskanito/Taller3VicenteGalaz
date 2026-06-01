@@ -53,5 +53,21 @@ public class Mago
 	    }	   
 	    return "Mago " + nombre + " | Hechizos: " + nombresHechizos;
 	}
+	
+	// Al igual que en hechizo, cree un toFileFormat para que mago sepa su formato al momento de escribirse en txt.
+	public String toFileFormat()
+	{
+		String nombresHechizos = "";	    
+	    for (int i = 0; i < this.hechizosMago.size(); i++) 
+	    {
+	        nombresHechizos += this.hechizosMago.get(i).getNombre();
+	        
+	        if (i < this.hechizosMago.size() - 1) 
+	        {
+	            nombresHechizos += "|";
+	        }
+	    }	   
+	    return nombre + ";" + nombresHechizos;
+	}
 
 }

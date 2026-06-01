@@ -40,14 +40,25 @@ public class Sistema
     	escritor.close();
     }
     
+    /*
+     * 	Igual que con los hechizos, abrimos el bw y tomamos el catálogo actualizado y reescribimos todo el txt.
+     */
     public void guardarMagos() throws IOException
     {
-    	
+    	BufferedWriter escritor = new BufferedWriter(new FileWriter("Magos.txt"));   
+    	for (Mago m : magos)
+    	{
+    		escritor.write(m.toFileFormat());
+    		escritor.newLine();
+    	}
+    	escritor.close();
     }
     
-    public void agregarMago() throws IOException
+    // Aquí solo añadimos el objeto del menu al catálogo de sistema y llamamos a guardarMagos().
+    public void agregarMago(Mago mago) throws IOException
     {
-
+    	magos.add(mago);
+    	guardarMagos();
     }  
     
     public void modificarMago() throws FileNotFoundException
@@ -80,7 +91,7 @@ public class Sistema
     /*
      * 	En este método usamos un toString y gracias al polimorfismo el objeto mostrará su respectivo toString con todos sus datos.
      */
-    public void mostrarTotalHechizos()
+    public ArrayList<Hechizo> mostrarTotalHechizos()
     {
     	System.out.println();
     	System.out.println("Catálogo de hechizos disponibles: ");
@@ -90,6 +101,7 @@ public class Sistema
     		System.out.println((i + 1) + ") " + catalogoHechizos.get(i).toString());
     	}
     	System.out.println();
+    	return catalogoHechizos;
     }
     
     /*
@@ -113,7 +125,7 @@ public class Sistema
      * 	y creamos los hechizos con sus respectivos tipos, luego de eso los agregamos al catálogo de hechizos.
      */
     
-    public void cargarHechizos() throws FileNotFoundException
+    public ArrayList<Hechizo> cargarHechizos() throws FileNotFoundException
     {
     	File arch = new File("Hechizos.txt");
     	Scanner lector = new Scanner(arch);
@@ -144,7 +156,8 @@ public class Sistema
     			catalogoHechizos.add(h);
     		}
     	}    	
-    	lector.close();    	
+    	lector.close();    
+    	return catalogoHechizos;
     }    
     
     /*
@@ -223,7 +236,7 @@ public class Sistema
     	{
     		System.out.println((i + 1) + ") " + catalogoHechizos.get(i).getNombre() + " | Puntuación: " + catalogoHechizos.get(i).calcularPuntuacion());
     	}
-    	System.out.println();
+    	System.out.println();    	
     }
     
     /*

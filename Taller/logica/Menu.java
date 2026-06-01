@@ -1,5 +1,6 @@
 package logica;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Menu 
@@ -83,9 +84,47 @@ public class Menu
     	} while (opcion != 7);
     }
     
-    private void menuAgregarMago()
+    /*
+     * 	Para el menu de agregar mago hacemos exactamente lo mismo que para agregar hechizos, pedimos los datos necesarios, creamos el
+     * 	objeto y llamamos a que sistema haga la sobreescritura del archivo, sin embargo mago pide una arraylist asi que hacemos que 
+     * 	pase el catálogo y le damos a elejir, puede elejir tantos como quiera, luego se crea el objeto y se sobreescribe automáticamente
+     * 	en el txt de magos.
+     */
+    private void menuAgregarMago() throws IOException
     {
+    	teclado.nextLine();
+    	System.out.print("Nombre del nuevo mago: ");
+    	String nombre = teclado.nextLine();	    	      
+    	ArrayList<Hechizo> catalogo = sistema.mostrarTotalHechizos();
+    	System.out.println();
+    	System.out.println("Escribe el nombre de los hechizos para el mago (ingresa 0 para no darle más hechizos al mago): ");    	    	
+    	ArrayList<Hechizo> hechizosMago = new ArrayList<>();
     	
+    	boolean ejecucion = true;
+    	do
+    	{	
+    		String opcion = teclado.nextLine();    
+    		if (opcion.equals("0"))
+    		{
+    			ejecucion = false;
+    		}
+    		else
+    		{
+    			for (int i = 0; i < catalogo.size(); i++)
+        		{
+        			if (catalogo.get(i).getNombre().equals(opcion))
+        			{
+        				hechizosMago.add(catalogo.get(i));
+        				System.out.println("Hechizo guardado");
+        			}
+        		}
+    		}
+    		
+    	} while (ejecucion);    	
+    	Mago m = new Mago(nombre, hechizosMago);
+    	sistema.agregarMago(m);
+    	System.out.println("Mago creado correctamente.");
+    	System.out.println();    	
     }
     
     /*
@@ -140,6 +179,7 @@ public class Menu
         teclado.nextLine();
         sistema.agregarHechizo(nuevoH);
         System.out.println("Hechizo agregado correctamente.");
+        System.out.println();
     }
     
 
