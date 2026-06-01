@@ -40,7 +40,7 @@ public class HechizoPlanta extends Hechizo
 	@Override
 	public String toFileFormat() 
 	{	
-		return getNombre() + ";Planta;" + getDaño() + ";" + duracionStun + ";" + cantPlantas;
+		return getNombre() + ";Planta;" + getDaño() + ";" + duracionStun + "," + cantPlantas;
 	}	 		
 	
 }
