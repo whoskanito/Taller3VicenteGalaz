@@ -18,12 +18,64 @@ public class Sistema
     }
 
     // Con el método iniciar comienza el programa, necesita cargar los archivos y mostrar el menú el cual se comunicará con todo el sistema.
-    public void iniciar() throws FileNotFoundException 
+    public void iniciar() throws IOException 
     {        	
     	cargarHechizos();
     	cargarMagos();
         menu.mostrarMenuPrincipal();
+    }	
+    
+    
+    //Aquí abrimos el bw y tomamos los hechizos de catálogo que ya está actualizado, y reescribimos todo el archivo.       
+    public void guardarHechizos() throws IOException
+    {
+    	BufferedWriter escritor = new BufferedWriter(new FileWriter("Hechizos.txt"));   
+    	for (Hechizo h : catalogoHechizos)
+    	{
+    		// "toFileFormat()" es un método que cree para que el objeto sepa su formato al momento de escribirse en un archivo, es como un     	
+    		// toString pero para el objeto.
+    		escritor.write(h.toFileFormat());
+    		escritor.newLine();
+    	}
+    	escritor.close();
     }
+    
+    public void guardarMagos() throws IOException
+    {
+    	
+    }
+    
+    public void agregarMago() throws IOException
+    {
+
+    }  
+    
+    public void modificarMago() throws FileNotFoundException
+    {
+    	
+    }
+    
+    public void eliminarMago() throws FileNotFoundException
+    {
+    	
+    }
+    
+    // Este método solo agrega el hechizo creado en el menú al catálogo.
+    public void agregarHechizo(Hechizo hechizo) throws IOException 
+    {
+        catalogoHechizos.add(hechizo);
+        guardarHechizos();
+    }
+    
+    public void modificarHechizo() throws FileNotFoundException
+    {
+    	
+    }
+    
+    public void eliminarHechizo() throws FileNotFoundException
+    {
+    	
+    }   
     
     /*
      * 	En este método usamos un toString y gracias al polimorfismo el objeto mostrará su respectivo toString con todos sus datos.
@@ -53,11 +105,6 @@ public class Sistema
     		System.out.println((i + 1) + ") " + magos.get(i).toString());
     	}
     	System.out.println();
-    }
-    
-    public void agregarMago() throws FileNotFoundException
-    {
-    	
     }    
     
     /*
@@ -98,8 +145,7 @@ public class Sistema
     		}
     	}    	
     	lector.close();    	
-    }
-    
+    }    
     
     /*
      *  Debido a que el constructor de magos nos pide un nombre y una array list, hacemos una Array dentro de la carha de archivos, y gracias
@@ -131,8 +177,7 @@ public class Sistema
     		magos.add(m);
     	}
     	lector.close();
-    }       
-    
+    }           
     
     /*
      * 	Aquí hacemos un método para buscar encontrar, no tiene mucho brillo, si lo encuentra devuelve 
@@ -150,6 +195,9 @@ public class Sistema
         return null;
     }
     
+    /*
+     *	En esta parte agarramos la lista de magos y la mostramos con su nombre y su puntaje con sus métodos correspondientes. 
+     */
     public void mostrarPMagos()
     {
     	System.out.println();
@@ -162,6 +210,10 @@ public class Sistema
     	System.out.println();
     }
     
+    /*
+     * 	Al igual que como hicimos con el método para mostrar magos, tomamos lalista de hechizos y la mostramos con nombre y puntaje, con sus
+     * 	respectivos métodos
+     */
     public void mostrarPHechizos()
     {
     	System.out.println();

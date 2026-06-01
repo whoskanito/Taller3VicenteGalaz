@@ -29,7 +29,11 @@ public class HechizoFuego extends Hechizo
 	{
 		return getDaño() * duracionQuemadura;
 	}
-	
-	
+
+	@Override
+	public String toFileFormat() 
+	{
+		return getNombre() + ";Fuego;" + getDaño() + ";" + duracionQuemadura;
+	}	
 	
 }

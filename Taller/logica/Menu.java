@@ -1,5 +1,5 @@
 package logica;
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Menu 
@@ -13,7 +13,7 @@ public class Menu
         this.teclado = new Scanner(System.in);
     }
 
-    public void mostrarMenuPrincipal() throws FileNotFoundException 
+    public void mostrarMenuPrincipal() throws IOException 
     {
         int opcion;
         do {
@@ -30,7 +30,7 @@ public class Menu
         } while (opcion != 3);
     }
 
-    private void mostrarMenuAdministrador() throws FileNotFoundException 
+    private void mostrarMenuAdministrador() throws IOException 
     {
     	int opcion;   
     	do 
@@ -46,12 +46,12 @@ public class Menu
     		opcion = teclado.nextInt();    		
     		switch (opcion)
     		{
-    			case 1 -> sistema.agregarMago();
-    			case 2 -> System.out.println("En proceso");
-    			case 3 -> System.out.println("En proceso");
-    			case 4 -> System.out.println("En proceso");
-    			case 5 -> System.out.println("En proceso");
-    			case 6 -> System.out.println("En proceso");
+    			case 1 -> menuAgregarMago();
+    			case 2 -> sistema.modificarMago();
+    			case 3 -> sistema.eliminarMago();
+    			case 4 -> menuAgregarHechizo();
+    			case 5 -> sistema.modificarHechizo();
+    			case 6 -> sistema.eliminarHechizo();
     			
     		}
     	} while (opcion != 7);
@@ -70,7 +70,7 @@ public class Menu
     		System.out.println("6) Mostrar todos los magos junto a su puntuacion");
     		System.out.println("7) Volver al menú principal");
     		System.out.print("--> ");    		
-    		opcion = teclado.nextInt();
+    		opcion = teclado.nextInt();    		
     		switch (opcion)
     		{
     			case 1 -> sistema.mostrarTopHechizos();
@@ -81,6 +81,65 @@ public class Menu
     			case 6 -> sistema.mostrarPMagos();
     		}
     	} while (opcion != 7);
+    }
+    
+    private void menuAgregarMago()
+    {
+    	
+    }
+    
+    /*
+     * 	Esa parte es media complicada pero intentaré explicarla lo mejor posible, en esta parte solo mostramos el menú al usuario
+     *  y creamos el objeto que le daremos a sistema, debido a que cadaclase tiene su formato, no es necesario nada má que crear el objeto
+     *  con los valores correctos.
+     */
+    private void menuAgregarHechizo() throws IOException 
+    {
+    	teclado.nextLine();
+        System.out.print("Nombre del hechizo: ");
+        String nombre = teclado.nextLine();
+        System.out.print("Tipo (Fuego/Tierra/Planta/Agua): ");
+        String tipo = teclado.nextLine().trim().toUpperCase();
+        System.out.print("Daño: ");
+        int daño = teclado.nextInt();
+        teclado.nextLine();
+        Hechizo nuevoH = null;
+        
+        // En esta parte filtramos según qué hechizo queremos crear. 
+        switch (tipo) 
+        {
+            case "FUEGO":
+                System.out.print("Duración Quemadura: ");
+                int duracion = teclado.nextInt();
+                nuevoH = new HechizoFuego(nombre, tipo, daño, duracion);
+                break;
+            case "TIERRA":
+                System.out.print("Mejora Defensa: ");
+                int defensa = teclado.nextInt();
+                nuevoH = new HechizoTierra(nombre, tipo, daño, defensa);
+                break;
+            case "PLANTA":
+                System.out.print("Duración Stun: ");
+                int stun = teclado.nextInt();
+                System.out.print("Cantidad Plantas: ");
+                int plantas = teclado.nextInt();
+                nuevoH = new HechizoPlanta(nombre, tipo, daño, stun, plantas);
+                break;
+            case "AGUA":
+                System.out.print("Cantidad de Heal: ");
+                int heal = teclado.nextInt();
+                System.out.print("Presión del Agua: ");
+                int presion = teclado.nextInt();
+                nuevoH = new HechizoAgua(nombre, tipo, daño, heal, presion);
+                break;
+            default:
+                System.out.println("Tipo inválido.");
+                return;
+        }
+        // Aquí invocamos a agregarHechizo() que es de sistema.
+        teclado.nextLine();
+        sistema.agregarHechizo(nuevoH);
+        System.out.println("Hechizo agregado correctamente.");
     }
     
 

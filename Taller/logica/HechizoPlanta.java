@@ -35,6 +35,12 @@ public class HechizoPlanta extends Hechizo
 	public int calcularPuntuacion() 
 	{
 		return getDaño() + (duracionStun * cantPlantas);
-	}	 
+	}
+
+	@Override
+	public String toFileFormat() 
+	{	
+		return getNombre() + ";Planta;" + getDaño() + ";" + duracionStun + ";" + cantPlantas;
+	}	 		
 	
 }

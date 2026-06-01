@@ -41,5 +41,6 @@ public abstract class Hechizo
 		return "Hechizo [nombre =" + nombre + ", tipo =" + tipo + ", daño =" + daño + "]";
 	}
 	
+	public abstract String toFileFormat();
 	
 }

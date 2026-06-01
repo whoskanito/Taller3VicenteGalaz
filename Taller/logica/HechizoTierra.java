@@ -29,7 +29,11 @@ public class HechizoTierra extends Hechizo
 	{
 		return (getDaño() * mejoraDefensa) / 2;
 	}
-	
-	
+
+	@Override
+	public String toFileFormat() 
+	{
+		return getNombre() + ";Tierra;" + getDaño() + ";" + mejoraDefensa;
+	}		
 	
 }

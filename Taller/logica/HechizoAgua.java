@@ -36,5 +36,11 @@ public class HechizoAgua extends Hechizo
 	{
 		return (getDaño() + cantHeal + presionDelAgua) * 2;
 	}
+
+	@Override
+	public String toFileFormat() 
+	{
+		return getNombre() + ";Agua;" + getDaño() + ";" + cantHeal + ";" + presionDelAgua;
+	}
 	
 }
