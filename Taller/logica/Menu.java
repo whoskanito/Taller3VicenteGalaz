@@ -1,5 +1,4 @@
 package logica;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Menu 
@@ -32,12 +31,55 @@ public class Menu
 
     private void mostrarMenuAdministrador() 
     {
-    	System.out.println("Hola, estoy mostrando el menú administrador");
+    	int opcion;
+    	do 
+    	{
+    		System.out.println("1) Agregar Mago");
+    		System.out.println("2) Modificar Mago");
+    		System.out.println("3) Eliminar Mago");
+    		System.out.println("4) Agregar Hechizo");
+    		System.out.println("5) Modificar Hechizo");
+    		System.out.println("6) Eliminar Hechizo");
+    		System.out.println("7) Volver al menú principal");
+    		System.out.print("--> ");
+    		opcion = teclado.nextInt();
+    		switch (opcion)
+    		{
+    			case 1 -> sistema.agregarMago();
+    			case 2 -> System.out.println("En proceso");
+    			case 3 -> System.out.println("En proceso");
+    			case 4 -> System.out.println("En proceso");
+    			case 5 -> System.out.println("En proceso");
+    			case 6 -> System.out.println("En proceso");
+    			
+    		}
+    	} while (opcion != 7);
     }
 
     private void mostrarMenuAnalista() 
     {
-    	System.out.println("Hola, estoy mostrando el menú analista");
+    	int opcion;
+    	do
+    	{
+    		System.out.println("1) Top 10 Mejores Hechizos");
+    		System.out.println("2) Top 3 Mejores Magos");
+    		System.out.println("3) Mostrar todos los Hechizos");
+    		System.out.println("4) Mostrar todos los magos");
+    		System.out.println("5) Mostrar todos los Hechizos junto a su puntuacion");
+    		System.out.println("6) Mostrar todos los magos junto a su puntuacion");
+    		System.out.println("7) Volver al menú principal");
+    		System.out.print("--> ");    		
+    		opcion = teclado.nextInt();
+    		switch (opcion)
+    		{
+    			case 1 -> System.out.println("En proceso");
+    			case 2 -> System.out.println("En proceso");
+    			case 3 -> sistema.mostrarTotalHechizos();
+    			case 4 -> System.out.println("En proceso");
+    			case 5 -> System.out.println("En proceso");
+    			case 6 -> System.out.println("En proceso"); 
+    		}
+    	} while (opcion != 7);
     }
     
 

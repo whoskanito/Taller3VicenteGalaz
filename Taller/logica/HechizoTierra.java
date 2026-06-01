@@ -16,9 +16,18 @@ public class HechizoTierra extends Hechizo
 	}
 
 	@Override
-	public String calcularPuntuacion() 
+	public String toString() 
 	{
-		return null;
+		return getNombre() +
+				" | Tipo: " + getTipo() +
+				" | Daño: " + getDaño() +
+				" | Mejora de defensa: "  + mejoraDefensa;
+	}
+	
+	@Override
+	public int calcularPuntuacion() 
+	{
+		return (getDaño() * mejoraDefensa) / 2;
 	}
 	
 	

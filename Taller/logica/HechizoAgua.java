@@ -22,11 +22,19 @@ public class HechizoAgua extends Hechizo
 	}
 
 	@Override
-	public String calcularPuntuacion() 
+	public String toString() 
 	{
-		return null;
+		return getNombre() +
+				" | Tipo: " + getTipo() +
+				" | Daño: " + getDaño() +
+				" | Cantidad de curación: "  + cantHeal +
+				" | Presión del Agua: " + presionDelAgua; 
 	}
 	
-	
+	@Override
+	public int calcularPuntuacion() 
+	{
+		return (getDaño() + cantHeal + presionDelAgua) * 2;
+	}
 	
 }

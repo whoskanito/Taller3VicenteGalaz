@@ -2,18 +2,18 @@ package logica;
 
 public class HechizoPlanta extends Hechizo
 {
-	private int duarcionStun, cantPlantas;
+	private int duracionStun, cantPlantas;
 
-	public HechizoPlanta(String nombre, String tipo, int daño, int duarcionStun, int cantPlantas) 
+	public HechizoPlanta(String nombre, String tipo, int daño, int duracionStun, int cantPlantas) 
 	{
 		super(nombre, tipo, daño);
-		this.duarcionStun = duarcionStun;
+		this.duracionStun = duracionStun;
 		this.cantPlantas = cantPlantas;
 	}
 
-	public int getDuarcionStun() 
+	public int getDuracionStun() 
 	{
-		return duarcionStun;
+		return duracionStun;
 	}
 
 	public int getCantPlantas() 
@@ -22,11 +22,19 @@ public class HechizoPlanta extends Hechizo
 	}
 
 	@Override
-	public String calcularPuntuacion() 
+	public String toString() 
 	{
-		return null;
+		return getNombre() +
+				" | Tipo: " + getTipo() +
+				" | Daño: " + getDaño() +
+				" | Duaración Stun: "  + duracionStun +
+				" | Cantidad de Plantas: " + cantPlantas; 
 	}
 	
-	
+	@Override
+	public int calcularPuntuacion() 
+	{
+		return getDaño() + (duracionStun * cantPlantas);
+	}	 
 	
 }

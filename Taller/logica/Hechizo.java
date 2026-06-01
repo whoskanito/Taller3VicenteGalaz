@@ -28,7 +28,13 @@ public abstract class Hechizo
 		return daño;
 	}
 
-	public abstract String calcularPuntuacion();
+	public abstract int calcularPuntuacion();
+
+	@Override
+	public String toString() 
+	{
+		return "Hechizo [nombre =" + nombre + ", tipo =" + tipo + ", daño =" + daño + "]";
+	}
 	
 	
 }
