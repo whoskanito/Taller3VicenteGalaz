@@ -32,9 +32,9 @@ public class Menu
 
     private void mostrarMenuAdministrador() throws FileNotFoundException 
     {
-    	int opcion;
+    	int opcion;   
     	do 
-    	{
+    	{      		
     		System.out.println("1) Agregar Mago");
     		System.out.println("2) Modificar Mago");
     		System.out.println("3) Eliminar Mago");
@@ -43,7 +43,7 @@ public class Menu
     		System.out.println("6) Eliminar Hechizo");
     		System.out.println("7) Volver al menú principal");
     		System.out.print("--> ");
-    		opcion = teclado.nextInt();
+    		opcion = teclado.nextInt();    		
     		switch (opcion)
     		{
     			case 1 -> sistema.agregarMago();
@@ -59,9 +59,9 @@ public class Menu
 
     private void mostrarMenuAnalista() 
     {
-    	int opcion;
+    	int opcion;    	
     	do
-    	{
+    	{    		
     		System.out.println("1) Top 10 Mejores Hechizos");
     		System.out.println("2) Top 3 Mejores Magos");
     		System.out.println("3) Mostrar todos los Hechizos");
@@ -73,8 +73,8 @@ public class Menu
     		opcion = teclado.nextInt();
     		switch (opcion)
     		{
-    			case 1 -> System.out.println("En proceso");
-    			case 2 -> System.out.println("En proceso");
+    			case 1 -> sistema.mostrarTopHechizos();
+    			case 2 -> sistema.mostrarTopMagos();
     			case 3 -> sistema.mostrarTotalHechizos();
     			case 4 -> sistema.mostrarMagos();
     			case 5 -> sistema.mostrarPHechizos();

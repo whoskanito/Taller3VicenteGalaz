@@ -1,6 +1,7 @@
 package logica;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Sistema 
@@ -29,6 +30,7 @@ public class Sistema
      */
     public void mostrarTotalHechizos()
     {
+    	System.out.println();
     	System.out.println("Catálogo de hechizos disponibles: ");
     	System.out.println();
     	for (int i = 0; i < catalogoHechizos.size(); i++)
@@ -38,8 +40,12 @@ public class Sistema
     	System.out.println();
     }
     
+    /*
+     * 	Aquí simplemente tomamos la lista de magos y la mostramos con un for y el toString de mago.
+     */
     public void mostrarMagos()
     {
+    	System.out.println();
     	System.out.println("Magos registrados: ");
     	System.out.println();
     	for (int i = 0; i < magos.size(); i++)
@@ -52,8 +58,7 @@ public class Sistema
     public void agregarMago() throws FileNotFoundException
     {
     	
-    }
-    
+    }    
     
     /*
      * 	La lectura de los hechizos es por donde tiene que emepzar el programa ya que más adelante usaremos el catálogo
@@ -147,6 +152,7 @@ public class Sistema
     
     public void mostrarPMagos()
     {
+    	System.out.println();
     	System.out.println("Magos con sus respectivos puntajes: ");
     	System.out.println();
     	for (int i = 0; i < magos.size(); i++)
@@ -158,6 +164,7 @@ public class Sistema
     
     public void mostrarPHechizos()
     {
+    	System.out.println();
     	System.out.println("Hechizos con sus respectivos puntajes: ");
     	System.out.println();
     	for (int i = 0; i < catalogoHechizos.size(); i++)
@@ -165,6 +172,46 @@ public class Sistema
     		System.out.println((i + 1) + ") " + catalogoHechizos.get(i).getNombre() + " | Puntuación: " + catalogoHechizos.get(i).calcularPuntuacion());
     	}
     	System.out.println();
+    }
+    
+    /*
+     * 	Para calcular el top de hechizos nos ayudaremos del método sort, primero creamos una lista para meter ahi la misma lista de hecizos, solo que ordenada, asi
+     * 	solo la usaremos para este propósito, el de mostrarla ordenada, luego agarramos los primeros 10 elementos y los mostramos.
+     */    
+    public void mostrarTopHechizos()
+    {
+    	System.out.println();
+    	System.out.println("Top 10 mejores hechizos según su puntuación: ");
+    	System.out.println();    	
+    	List<Hechizo> ordenados = new ArrayList<>(catalogoHechizos);    	
+    	ordenados.sort((h1, h2) -> Double.compare(h2.calcularPuntuacion(), h1.calcularPuntuacion()));
+    	
+    	for (int i = 0; i < 10; i++)
+    	{
+    		Hechizo h = ordenados.get(i);
+    		System.out.println((i + 1) + ") " + h.getNombre() + " | Puntaje: " + h.calcularPuntuacion());
+    	}
+    	System.out.println();
+    }    
+    
+    /*
+     * 	Aquí igual que el de hechizos, creamos una lista propia, la ordenamos con sort, y tomamos los primeros 3 magos de la lista ordenada.
+     */
+    public void mostrarTopMagos()
+    {
+    	System.out.println();
+    	System.out.println("Top 3 Magos según su puntuación: ");
+    	System.out.println();  
+    	List<Mago> ordenados = new ArrayList<>(magos);    
+    	
+    	ordenados.sort((m1, m2) -> Double.compare(m2.calcularPuntuacion(), m1.calcularPuntuacion()));
+    	
+    	for (int i = 0; i < 3; i++)
+    	{
+    		Mago m = ordenados.get(i);
+    		System.out.println((i + 1) + ") " + m.getNombre() + " | Puntaje: " + m.calcularPuntuacion());    	
+    	}
+    	System.out.println();    	
     }
     
     
