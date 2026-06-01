@@ -2,6 +2,11 @@ package logica;
 
 public abstract class Hechizo
 {
+	
+	/*
+	 * 	Clase abstracta de hechizo, no hay mucho que comentar, la base de los hechizos, comparten nombre, tipo y daño, pero todas tienen atributos que 
+	 * 	las diferencian en algo.
+	 */
 	private String nombre;
 	private String tipo;
 	private int daño;

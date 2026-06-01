@@ -1,4 +1,5 @@
 package logica;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Menu 
@@ -12,7 +13,7 @@ public class Menu
         this.teclado = new Scanner(System.in);
     }
 
-    public void mostrarMenuPrincipal() 
+    public void mostrarMenuPrincipal() throws FileNotFoundException 
     {
         int opcion;
         do {
@@ -29,7 +30,7 @@ public class Menu
         } while (opcion != 3);
     }
 
-    private void mostrarMenuAdministrador() 
+    private void mostrarMenuAdministrador() throws FileNotFoundException 
     {
     	int opcion;
     	do 
@@ -75,9 +76,9 @@ public class Menu
     			case 1 -> System.out.println("En proceso");
     			case 2 -> System.out.println("En proceso");
     			case 3 -> sistema.mostrarTotalHechizos();
-    			case 4 -> System.out.println("En proceso");
-    			case 5 -> System.out.println("En proceso");
-    			case 6 -> System.out.println("En proceso"); 
+    			case 4 -> sistema.mostrarMagos();
+    			case 5 -> sistema.mostrarPHechizos();
+    			case 6 -> sistema.mostrarPMagos();
     		}
     	} while (opcion != 7);
     }
