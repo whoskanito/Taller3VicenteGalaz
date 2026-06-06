@@ -66,9 +66,13 @@ public class Sistema
     	
     }
     
-    public void eliminarMago() throws FileNotFoundException
-    {
-    	
+    public boolean eliminarMago(String n) throws IOException
+    {    	
+    	Mago m = buscarMago(n);   
+    	if (m == null) { return false; }
+    	magos.remove(m);
+    	guardarMagos(); 
+    	return true;
     }
     
     // Este método solo agrega el hechizo creado en el menú al catálogo.
@@ -83,10 +87,23 @@ public class Sistema
     	
     }
     
-    public void eliminarHechizo() throws FileNotFoundException
+    public boolean eliminarHechizo(String n) throws FileNotFoundException
     {
-    	
+    	return true;
     }   
+        
+    // Lo mismo que buscarHechizo, busca al mago en el Array, si está, lo deuvuelve, si no, no retorna nada.
+    public Mago buscarMago(String nombre)
+    {
+    	for (Mago m : magos)
+    	{
+    		if (m.getNombre().equals(nombre))
+    		{
+    			return m;
+    		}
+    	}    	
+    	return null;
+    }    
     
     /*
      * 	En este método usamos un toString y gracias al polimorfismo el objeto mostrará su respectivo toString con todos sus datos.
@@ -107,7 +124,7 @@ public class Sistema
     /*
      * 	Aquí simplemente tomamos la lista de magos y la mostramos con un for y el toString de mago.
      */
-    public void mostrarMagos()
+    public ArrayList<Mago> mostrarMagos()
     {
     	System.out.println();
     	System.out.println("Magos registrados: ");
@@ -117,6 +134,7 @@ public class Sistema
     		System.out.println((i + 1) + ") " + magos.get(i).toString());
     	}
     	System.out.println();
+    	return magos;
     }    
     
     /*
@@ -278,6 +296,17 @@ public class Sistema
     	}
     	System.out.println();    	
     }
+    
+    // No sé por qué me demoré tnto en hacer los getters XD
+	public ArrayList<Hechizo> getCatalogoHechizos() 
+	{
+		return catalogoHechizos;
+	}
+
+	public ArrayList<Mago> getMagos() 
+	{
+		return magos;
+	}
     
     
 }

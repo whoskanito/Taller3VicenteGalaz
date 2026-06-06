@@ -1,4 +1,5 @@
 package logica;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -49,10 +50,10 @@ public class Menu
     		{
     			case 1 -> menuAgregarMago();
     			case 2 -> sistema.modificarMago();
-    			case 3 -> sistema.eliminarMago();
+    			case 3 -> menuEliminarMago();
     			case 4 -> menuAgregarHechizo();
     			case 5 -> sistema.modificarHechizo();
-    			case 6 -> sistema.eliminarHechizo();
+    			case 6 -> menuEliminarHechizo();
     			
     		}
     	} while (opcion != 7);
@@ -116,10 +117,9 @@ public class Menu
         			{
         				hechizosMago.add(catalogo.get(i));
         				System.out.println("Hechizo guardado");
-        			}
+        			}        		
         		}
-    		}
-    		
+    		}    		
     	} while (ejecucion);    	
     	Mago m = new Mago(nombre, hechizosMago);
     	sistema.agregarMago(m);
@@ -180,7 +180,79 @@ public class Menu
         sistema.agregarHechizo(nuevoH);
         System.out.println("Hechizo agregado correctamente.");
         System.out.println();
+    }    
+    
+    /*
+     * 	Me costó hacer este método pq no sabia que un objeto usaba == en vez de equals para comparar.
+     * 	Aquí buscamos en una lista de magos el nombre que se ingresó, si el nombre coincide se elimina del catálogo 
+     * 	original de magos, si no encuentra el nombre no hace nada. 
+     */
+    private void menuEliminarMago() throws IOException
+    {    	
+    	if (sistema.getMagos().isEmpty()) 
+    	{
+            System.out.println("No hay magos registrados.");
+            return;
+        }    	
+    	System.out.println();
+        System.out.println("=== Magos registrados ===");   
+        ArrayList<Mago> magos = sistema.getMagos();
+        for (int i = 0; i < magos.size(); i++) 
+        {
+            System.out.println((i + 1) + ") " + magos.get(i).getNombre());
+        }
+
+        System.out.print("Escribe el nombre del mago a eliminar: ");
+        teclado.nextLine(); // --> Este teclado.nextLine() es importante
+        /*
+         * 	Sin él, el buffer del teclado se queda pillado en algún teclado.nextInt, eso hace que al momento de 
+         * 	querer ingresar algo el teclado se salte el ingreso de datos y se quede en null, haciendo que se caiga
+         * 	todo el programa, no sé sies problema de eclipse pero me tomó harto darme cuenta de ese detalle...
+         */
+        String nombre = teclado.nextLine().trim();
+        boolean eliminado = sistema.eliminarMago(nombre);        
+
+        if (eliminado)
+        {
+            System.out.println("Mago " + nombre + " eliminado correctamente.");
+        } 
+        else 
+        {
+            System.out.println("No se encontró un mago con ese nombre.");
+        }
     }
     
+    /*
+     * 	Este método sigue exactamente la misma lógica que eliminar mago, agarra el nombre que ingresas, lo revisa en el catálogo que toma
+     * 	de sistema, si está, lo borra, si no, no hace nada.
+     */  
+    private void menuEliminarHechizo() throws FileNotFoundException 
+    {
+        if (sistema.getCatalogoHechizos().isEmpty()) 
+        {
+            System.out.println("No hay hechizos registrados.");
+            return;
+        }
+        System.out.println("=== Hechizos registrados ===");
+        ArrayList<Hechizo> catalogo = sistema.getCatalogoHechizos();
+        for (int i = 0; i < catalogo.size(); i++) 
+        {
+            System.out.println((i + 1) + ". " + catalogo.get(i).getNombre());
+        }
 
+        System.out.print("Escribe el nombre del hechizo a eliminar: ");
+        String nombre = teclado.nextLine().trim();
+        boolean eliminado = sistema.eliminarHechizo(nombre);
+
+        if (eliminado) 
+        {
+            System.out.println("Hechizo " + nombre + " eliminado correctamente.");            
+        } 
+        else 
+        {
+            System.out.println("No se encontró un hechizo con ese nombre.");
+        }
+    }
+   
+    
 }
