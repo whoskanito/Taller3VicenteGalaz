@@ -87,8 +87,17 @@ public class Sistema
     	
     }
     
-    public boolean eliminarHechizo(String n) throws FileNotFoundException
+    public boolean eliminarHechizo(String n) throws IOException
     {
+    	Hechizo h = buscarHechizo(n);
+    	if (h == null) { return false; }
+    	catalogoHechizos.remove(h);
+    	for (Mago m : magos)
+    	{
+    		m.getHezchizosMago().remove(h);
+    	}
+    	guardarHechizos();
+    	guardarMagos();
     	return true;
     }   
         
@@ -124,7 +133,7 @@ public class Sistema
     /*
      * 	Aquí simplemente tomamos la lista de magos y la mostramos con un for y el toString de mago.
      */
-    public ArrayList<Mago> mostrarMagos()
+    public void mostrarMagos()
     {
     	System.out.println();
     	System.out.println("Magos registrados: ");
@@ -133,8 +142,7 @@ public class Sistema
     	{
     		System.out.println((i + 1) + ") " + magos.get(i).toString());
     	}
-    	System.out.println();
-    	return magos;
+    	System.out.println();    	
     }    
     
     /*

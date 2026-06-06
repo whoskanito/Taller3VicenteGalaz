@@ -1,5 +1,4 @@
 package logica;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -226,7 +225,7 @@ public class Menu
      * 	Este método sigue exactamente la misma lógica que eliminar mago, agarra el nombre que ingresas, lo revisa en el catálogo que toma
      * 	de sistema, si está, lo borra, si no, no hace nada.
      */  
-    private void menuEliminarHechizo() throws FileNotFoundException 
+    private void menuEliminarHechizo() throws IOException 
     {
         if (sistema.getCatalogoHechizos().isEmpty()) 
         {
@@ -241,16 +240,18 @@ public class Menu
         }
 
         System.out.print("Escribe el nombre del hechizo a eliminar: ");
+        teclado.nextLine();
         String nombre = teclado.nextLine().trim();
         boolean eliminado = sistema.eliminarHechizo(nombre);
 
         if (eliminado) 
         {
-            System.out.println("Hechizo " + nombre + " eliminado correctamente.");            
+            System.out.println("Hechizo " + nombre + " eliminado correctamente.");   
+            System.out.println("Los magos que hayan aprendido ese hechizo ya no lo saben.");
         } 
         else 
         {
-            System.out.println("No se encontró un hechizo con ese nombre.");
+            System.out.println("No se encontró ningún hechizo con ese nombre.");
         }
     }
    
