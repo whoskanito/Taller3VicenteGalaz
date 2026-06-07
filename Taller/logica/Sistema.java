@@ -137,6 +137,14 @@ public class Sistema implements ISistema
         return null;
     }
     
+    /*
+     * 	Aquí es importante explciar el funcionamiento de params.. ya que poner varargum() nos deja poner 1 o 2
+     * 	parámetros según la necesitad, lo cual es especialmente útil para los hechizos, ya que de vez en cuando
+     * 	cambiaremos de tipo fuego y a veces de tipo agua, y para evitar hacer 2 métodos, params nos ayuda mucho.
+     * 
+     * 	EL método agarra los parámetros que le dimos desde menú y lo busca, al encontrarlo retorna el tipo y le cambia lo que hayamos 
+     * 	elegido anteriormente, luego guarda los magos y hechizos por igual, ya que a los magos se les debe reflejar el cambio.
+     */
     public void modificarHechizo(String nombreActual, String nuevoNombre, int nuevoDaño, int... params) throws IOException 
     {
         Hechizo h = buscarHechizo(nombreActual);        

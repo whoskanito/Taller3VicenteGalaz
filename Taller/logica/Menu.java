@@ -358,6 +358,10 @@ public class Menu
         }
     }    
     
+    /*
+     * 	El funcionamiento en el menú es que toma los datos de los hechizos y los guarda, luego invoca
+     * 	el constructor correpondiente según el tipo.
+     */  
     private void menuModificarHechizo() throws IOException 
     {
         if (sistema.getCatalogoHechizos().isEmpty()) 
