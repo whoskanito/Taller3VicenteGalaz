@@ -50,7 +50,7 @@ public class Menu
     		switch (opcion)
     		{
     			case 1 -> menuAgregarMago();
-    			case 2 -> sistema.modificarMago();
+    			case 2 -> menuModificarMago();
     			case 3 -> menuEliminarMago();
     			case 4 -> menuAgregarHechizo();
     			case 5 -> sistema.modificarHechizo();
@@ -262,5 +262,100 @@ public class Menu
         }
     }
    
+    /*
+     * 	El menú para modificar magos es medio complicado, para empezar se asegura de ver si hay magos en el sistema, si no, te devuelve
+     * 	para el menú, despés toma el nombre del mago que quieras modificar y lo busca, si lo encuentra te da a elegir que 
+     * 	lo que quiera modificar del mago, según lo que elijas hay un método para eso en sistema.
+     */
+    private void menuModificarMago() throws IOException 
+    {
+        if (sistema.getMagos().isEmpty()) 
+        {
+            System.out.println("No hay magos registrados.");
+            return;
+        }
+        
+        System.out.println("=== Magos registrados ===");
+        for (Mago m : sistema.getMagos()) 
+        {
+            System.out.println("- " + m.getNombre());
+        }
+        teclado.nextLine();
+        System.out.print("Nombre del mago que quieres modificar: ");
+        String nombre = teclado.nextLine().trim();
+        System.out.println();
+        
+        // Hice un método solo pa buscar al mago por su nombre xd
+        Mago mago = sistema.getMagoPorNombre(nombre);
+        if (mago == null) 
+        {
+            System.out.println("No se encontró ese mago.");
+            System.out.println();
+            return;
+        }
+
+        System.out.println("¿Qué deseas modificar?");
+        System.out.println("1. Cambiar nombre");
+        System.out.println("2. Agregar hechizo");
+        System.out.println("3. Quitar hechizo");
+        System.out.print("--> ");
+        int opcion = teclado.nextInt();
+        teclado.nextLine();
+
+        switch (opcion) 
+        {
+            case 1:
+                System.out.print("Nuevo nombre: ");
+                String nuevoNombre = teclado.nextLine().trim();
+                sistema.modificarNombreMago(nombre, nuevoNombre);
+                System.out.println("Nombre actualizado.");
+                System.out.println();
+                break;
+
+            case 2:
+                System.out.println("=== Hechizos disponibles ===");
+                for (Hechizo h : sistema.getCatalogoHechizos()) 
+                {
+                    System.out.println("- " + h.getNombre());
+                }
+                System.out.print("Nombre del hechizo a agregar: ");
+                String nombreAgregar = teclado.nextLine().trim();
+                boolean agregado = sistema.agregarHechizooAMago(nombre, nombreAgregar);                
+                if (agregado) 
+                {
+                	System.out.println("Hechizo agregdo. "); 
+                	System.out.println();
+                } 
+                else 
+                { 
+                	System.out.println("Hechizo no encontrado en el catálogo"); 
+                	System.out.println();
+                }                
+                break;
+                
+            case 3:
+                System.out.println("=== Hechizos actuales de " + mago.getNombre() + " ===");
+                for (Hechizo h : mago.getHechizosMago()) 
+                {
+                    System.out.println("- " + h.getNombre());
+                }
+                System.out.print("Nombre del hechizo a quitar: ");
+                String nombreQuitar = teclado.nextLine().trim();
+                boolean quitado = sistema.quitarHechizoDeMago(nombre, nombreQuitar);                
+                if (quitado)
+                {
+                	System.out.println("Hechizo removido.");
+                	System.out.println();
+                }
+                else 
+                {
+                	System.out.println("El mago no tenía ese hechizo.");
+                	System.out.println();
+                }
+                break;
+            default:
+                System.out.println("Opción inválida.");
+        }
+    }    
     
 }

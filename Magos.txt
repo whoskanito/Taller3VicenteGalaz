@@ -1,4 +1,4 @@
-Pruno;Sofoco|Disparo Lodo|Pirotecnia|Vórtice Ígneo
+etesech;Disparo Lodo|Pirotecnia|Vórtice Ígneo|Tierra Viva
 Ferran;Salmuera|Envite Igneo|Disparo Lodo|Poder Pasado|Rueda Fuego|Hidroariete|Burbuja
 Sasa;Infierno|Martillazo|Hidroariete|Envite Igneo
 Mul;Gigadrenado|Rayo Burbuja|Danza Lluvia|Pistola Agua

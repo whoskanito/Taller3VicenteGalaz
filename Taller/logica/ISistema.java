@@ -13,6 +13,10 @@ public interface ISistema
     void agregarMago(Mago mago) throws IOException;
     void modificarMago() throws IOException;
     boolean eliminarMago(String nombre) throws IOException;
+	Mago getMagoPorNombre(String nombre);
+	boolean modificarNombreMago(String nombre, String nuevoNombre) throws IOException;
+	boolean agregarHechizooAMago(String nombre, String nombreAgregar) throws IOException;
+	boolean quitarHechizoDeMago(String nombre, String nombreQuitar) throws IOException;
 
     void agregarHechizo(Hechizo hechizo) throws IOException;
     void modificarHechizo() throws IOException;
@@ -30,5 +34,6 @@ public interface ISistema
 
     ArrayList<Hechizo> getCatalogoHechizos();
     ArrayList<Mago> getMagos();
+
 }
 

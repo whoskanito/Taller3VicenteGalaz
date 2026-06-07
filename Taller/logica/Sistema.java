@@ -32,8 +32,7 @@ public class Sistema implements ISistema
         catch ( FileNotFoundException e ) { System.out.println("Archivo no encontrado"); } 
 		catch ( IOException e ) { System.out.println("Error al sobreescribir datos: " + e.getMessage()); }
     }	
-    
-    
+        
     //Aquí abrimos el bw y tomamos los hechizos de catálogo que ya está actualizado, y reescribimos todo el archivo.       
     public void guardarHechizos() throws IOException
     {
@@ -74,6 +73,47 @@ public class Sistema implements ISistema
     	
     }
     
+    public boolean modificarNombreMago(String nombreActual, String nuevoNombre) throws IOException 
+    {
+        Mago m = buscarMago(nombreActual);
+        if (m == null) return false;
+        m.setNombre(nuevoNombre);
+        guardarMagos();
+        return true;
+    }
+    
+    /* El método toma nombre y hechizo y los busca con los métodos usados anteriormente, si funciona y 
+     * el hechizo existe retorna true. 
+     */
+    public boolean agregarHechizooAMago(String nombreMago, String nombreHechizo) throws IOException
+    {
+        Mago m = buscarMago(nombreMago);
+        Hechizo h = buscarHechizo(nombreHechizo);
+        if (m == null || h == null) return false;
+        m.getHechizosMago().add(h);
+        guardarMagos();
+        return true;
+    }
+    
+    /*
+     * 	Al igual que agregar hechizo, quitar hace lo mismo pero a la inversa, toma el hechizo y si existe, lo 
+     * 	borra y retorna true.
+     */
+    public boolean quitarHechizoDeMago(String nombreMago, String nombreHechizo) throws IOException 
+    {
+        Mago m = buscarMago(nombreMago);
+        Hechizo h = buscarHechizo(nombreHechizo);
+        if (m == null || h == null) return false;
+        m.getHechizosMago().remove(h);
+        guardarMagos();
+        return true;
+    }
+    // Método para buscar a un mago y que retorne al mago...
+    public Mago getMagoPorNombre(String nombre) 
+    {
+        return buscarMago(nombre);
+    }
+    
     public boolean eliminarMago(String n) throws IOException
     {    	
     	Mago m = buscarMago(n);   
@@ -95,6 +135,7 @@ public class Sistema implements ISistema
     	
     }
     
+    // Toma el nmbre de hechizo, si existe lo borra y retorna true.
     public boolean eliminarHechizo(String n) throws IOException
     {
     	Hechizo h = buscarHechizo(n);

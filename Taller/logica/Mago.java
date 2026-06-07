@@ -34,6 +34,16 @@ public class Mago
 		return puntuacion;
 	}	
 	
+	public ArrayList<Hechizo> getHechizosMago() 
+	{
+		return hechizosMago;
+	}
+
+	public void setNombre(String nombre) 
+	{
+		this.nombre = nombre;
+	}
+
 	/*
 	 * 	Aquí tuve que hacer el toString para que específicamente se vieran sólo los nombres de los hechizos ya que 
 	 * 	al llamar al toString en sistema se tiraba el de hechizos y quedaba una salida gigante :p
