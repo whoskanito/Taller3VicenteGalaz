@@ -1,4 +1,4 @@
-### Taller n°1 Programación Orientada a Objetos
+### Taller n°3 Programación Orientada a Objetos
 
 <p>
 <strong>Integrante:</strong> Vicente Renato Galaz Palacios <br>
@@ -7,16 +7,12 @@
 </p>
 
 ### Estructura del Proyecto
- El proyecto cuenta con una única clase:
- 
-- Main:
-  Clase principal que contiene el método main y toda la lógica del programa.  
-  Incluye métodos para:
-  - Registrar actividades
-  - Modificar actividades
-  - Mostrar actividades
-  - Mostrar actividad más popular en general y por usuario.
-  - Mostrar al usuario más procrastinador.
+ El proyecto cuenta las siguientes Clases:
+- App: Main del proyecto, se encarga de inicializar el código.
+- Sistema:  
+- ISistema: Interfaz de Sistema  
+- 
+
   
 ### Instrucciones de ejecución
   
