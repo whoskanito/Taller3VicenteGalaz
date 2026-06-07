@@ -21,6 +21,16 @@ public class HechizoPlanta extends Hechizo
 		return cantPlantas;
 	}
 
+	public void setDuracionStun(int duracionStun) 
+	{
+		this.duracionStun = duracionStun;
+	}
+
+	public void setCantPlantas(int cantPlantas) 
+	{
+		this.cantPlantas = cantPlantas;
+	}
+
 	@Override
 	public String toString() 
 	{

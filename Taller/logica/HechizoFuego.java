@@ -15,6 +15,11 @@ public class HechizoFuego extends Hechizo
 		return duracionQuemadura;
 	}
 
+	public void setDuracionQuemadura(int duracionQuemadura) 
+	{
+		this.duracionQuemadura = duracionQuemadura;
+	}
+
 	@Override
 	public String toString() 
 	{

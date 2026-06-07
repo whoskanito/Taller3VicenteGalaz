@@ -21,6 +21,16 @@ public class HechizoAgua extends Hechizo
 		return presionDelAgua;
 	}
 
+	public void setCantHeal(int cantHeal) 
+	{
+		this.cantHeal = cantHeal;
+	}
+
+	public void setPresionDelAgua(int presionDelAgua) 
+	{
+		this.presionDelAgua = presionDelAgua;
+	}
+
 	@Override
 	public String toString() 
 	{

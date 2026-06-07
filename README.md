@@ -23,4 +23,4 @@ No contiene lógica de negocio.
   
 1.  Clonar o descargar el repositorio desde github.
 2. Abrir proyecto en eclipse.
-3. Ejecutar la clase "APP.java" como aplicación Java.
+3. Ejecutar la clase "App.java" como aplicación Java.

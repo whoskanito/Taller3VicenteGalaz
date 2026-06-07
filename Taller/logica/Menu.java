@@ -53,7 +53,7 @@ public class Menu
     			case 2 -> menuModificarMago();
     			case 3 -> menuEliminarMago();
     			case 4 -> menuAgregarHechizo();
-    			case 5 -> sistema.modificarHechizo();
+    			case 5 -> menuModificarHechizo();
     			case 6 -> menuEliminarHechizo();
     			
     		}
@@ -357,5 +357,71 @@ public class Menu
                 System.out.println("Opción inválida.");
         }
     }    
+    
+    private void menuModificarHechizo() throws IOException 
+    {
+        if (sistema.getCatalogoHechizos().isEmpty()) 
+        {
+            System.out.println("No hay hechizos registrados.");
+            return;
+        }
+
+        System.out.println("=== Hechizos registrados ===");
+        for (Hechizo h : sistema.getCatalogoHechizos()) 
+        {
+            System.out.println("- " + h.getNombre());
+        }
+        teclado.nextLine();
+        System.out.print("Nombre del hechizo a modificar: ");
+        String nombre = teclado.nextLine().trim();
+     
+        String tipo = sistema.getTipoHechizo(nombre);
+        if (tipo == null) 
+        {
+            System.out.println("No se encontró ese hechizo.");
+            return;
+        }
+        System.out.print("Nuevo nombre: ");
+        String nuevoNombre = teclado.nextLine().trim();
+        System.out.print("Nuevo daño: ");
+        int nuevoDaño = teclado.nextInt();
+        teclado.nextLine();
+
+        switch (tipo) 
+        {
+            case "Fuego":
+                System.out.print("Nueva duración quemadura: ");
+                int duracion = teclado.nextInt();
+                teclado.nextLine();
+                sistema.modificarHechizo(nombre, nuevoNombre, nuevoDaño, duracion);
+                break;
+
+            case "Tierra":
+                System.out.print("Nueva mejora defensa: ");
+                int defensa = teclado.nextInt();
+                teclado.nextLine();
+                sistema.modificarHechizo(nombre, nuevoNombre, nuevoDaño, defensa);
+                break;
+
+            case "Planta":
+                System.out.print("Nueva duración stun: ");
+                int stun = teclado.nextInt();
+                System.out.print("Nueva cantidad plantas: ");
+                int plantas = teclado.nextInt();
+                teclado.nextLine();
+                sistema.modificarHechizo(nombre, nuevoNombre, nuevoDaño, stun, plantas);
+                break;
+
+            case "Agua":
+                System.out.print("Nueva cantidad heal: ");
+                int heal = teclado.nextInt();
+                System.out.print("Nueva presión del agua: ");
+                int presion = teclado.nextInt();
+                teclado.nextLine();
+                sistema.modificarHechizo(nombre, nuevoNombre, nuevoDaño, heal, presion);
+                break;
+        }
+        System.out.println("Hechizo modificado correctamente.");
+    }
     
 }

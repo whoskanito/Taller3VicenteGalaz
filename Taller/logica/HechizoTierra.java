@@ -14,6 +14,11 @@ public class HechizoTierra extends Hechizo
 	{
 		return mejoraDefensa;
 	}
+	
+	public void setMejoraDefensa(int mejoraDefensa) 
+	{
+		this.mejoraDefensa = mejoraDefensa;
+	}
 
 	@Override
 	public String toString() 

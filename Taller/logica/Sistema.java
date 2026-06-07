@@ -27,7 +27,7 @@ public class Sistema implements ISistema
     	{
     	cargarHechizos();
     	cargarMagos();
-        menu.mostrarMenuPrincipal();
+    	menu.mostrarMenuPrincipal();
         }    
         catch ( FileNotFoundException e ) { System.out.println("Archivo no encontrado"); } 
 		catch ( IOException e ) { System.out.println("Error al sobreescribir datos: " + e.getMessage()); }
@@ -66,12 +66,7 @@ public class Sistema implements ISistema
     {
     	magos.add(mago);
     	guardarMagos();
-    }  
-    
-    public void modificarMago() throws FileNotFoundException
-    {
-    	
-    }
+    }     
     
     public boolean modificarNombreMago(String nombreActual, String nuevoNombre) throws IOException 
     {
@@ -130,9 +125,44 @@ public class Sistema implements ISistema
         guardarHechizos();
     }
     
-    public void modificarHechizo() throws FileNotFoundException
+    // Con instanseof comprobamos el tipo del hechizo, retornamos su tipo, no tiene mucho brillo.
+    public String getTipoHechizo(String nombre) 
     {
-    	
+        Hechizo h = buscarHechizo(nombre);
+        if (h == null) return null;
+        if (h instanceof HechizoFuego) return "Fuego";
+        if (h instanceof HechizoTierra) return "Tierra";
+        if (h instanceof HechizoPlanta) return "Planta";
+        if (h instanceof HechizoAgua) return "Agua";
+        return null;
+    }
+    
+    public void modificarHechizo(String nombreActual, String nuevoNombre, int nuevoDaño, int... params) throws IOException 
+    {
+        Hechizo h = buscarHechizo(nombreActual);        
+        h.setNombre(nuevoNombre);
+        h.setDaño(nuevoDaño);
+ 
+        if (h instanceof HechizoFuego)
+        {
+            ((HechizoFuego) h).setDuracionQuemadura(params[0]);
+        }
+        else if (h instanceof HechizoTierra)
+        {
+            ((HechizoTierra) h).setMejoraDefensa(params[0]);
+        }
+        else if (h instanceof HechizoPlanta) 
+        {
+            ((HechizoPlanta) h).setDuracionStun(params[0]);
+            ((HechizoPlanta) h).setCantPlantas(params[1]);
+        }
+        else if (h instanceof HechizoAgua) 
+        {
+            ((HechizoAgua) h).setCantHeal(params[0]);
+            ((HechizoAgua) h).setPresionDelAgua(params[1]);
+        } 
+        guardarHechizos();
+        guardarMagos();        
     }
     
     // Toma el nmbre de hechizo, si existe lo borra y retorna true.
@@ -239,8 +269,7 @@ public class Sistema implements ISistema
      *  Debido a que el constructor de magos nos pide un nombre y una array list, hacemos una Array dentro de la carha de archivos, y gracias
      *  al método buscarHechizo() buscamos en nuestro catálogo ya cargado si ese mago lo sabe o no, si lo sabe, lo agregamos a la array, si no, pasa
      *  al siguiente índice para seguir verificando, al final, creamos al mago y lo agregamos a los magos del programa
-     */
-    
+     */    
     public void cargarMagos() throws FileNotFoundException
     {
     	File arch = new File("Magos.txt");
