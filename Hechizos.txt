@@ -59,6 +59,7 @@ Vórtice Ígneo;Fuego;20;4
 Rayo Burbuja;Agua;53;65,242
 Acua Jet;Agua;92;32,252
 Burbuja;Agua;24;29,292
+Excavar;Tierra;129;40
 Pulso de Agua;Agua;35;24,415
 Megaagotar;Planta;84;3,6
 Sofoco;Fuego;36;4
@@ -86,3 +87,4 @@ Mazazo;Planta;105;1,2
 Ataque Arena;Tierra;102;40
 Tierra Viva;Tierra;46;36
 Origen Pulso;Agua;21;30,208
+Bucle Arena;Planta;15;2,8

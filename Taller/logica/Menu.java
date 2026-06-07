@@ -5,15 +5,16 @@ import java.util.Scanner;
 
 public class Menu 
 {
-    private Sistema sistema;
+    private ISistema sistema;
     private Scanner teclado;
 
-    public Menu(Sistema sistema) 
+    public Menu(ISistema sistema) 
     {
         this.sistema = sistema;
         this.teclado = new Scanner(System.in);
     }
-
+    
+    // Menú principal, no tiene mucho brillo.
     public void mostrarMenuPrincipal() throws IOException 
     {
         int opcion;
@@ -30,7 +31,8 @@ public class Menu
             }
         } while (opcion != 3);
     }
-
+    
+    // Este menú es el CRUD, permite cambiar todo como admin. 
     private void mostrarMenuAdministrador() throws IOException 
     {
     	int opcion;   
@@ -57,7 +59,8 @@ public class Menu
     		}
     	} while (opcion != 7);
     }
-
+    
+    // Menú analista, analiza..
     private void mostrarMenuAnalista() 
     {
     	int opcion;    	
@@ -128,7 +131,7 @@ public class Menu
     
     /*
      * 	Esa parte es media complicada pero intentaré explicarla lo mejor posible, en esta parte solo mostramos el menú al usuario
-     *  y creamos el objeto que le daremos a sistema, debido a que cadaclase tiene su formato, no es necesario nada má que crear el objeto
+     *  y creamos el objeto que le daremos a sistema, debido a que cadaclase tiene su formato, no es necesario nada más que crear el objeto
      *  con los valores correctos.
      */
     private void menuAgregarHechizo() throws IOException 
@@ -182,7 +185,7 @@ public class Menu
     }    
     
     /*
-     * 	Me costó hacer este método pq no sabia que un objeto usaba == en vez de equals para comparar.
+     * 	Me costó hacer este método pq no sabia que un objeto usaba == en vez de .equals para comparar.
      * 	Aquí buscamos en una lista de magos el nombre que se ingresó, si el nombre coincide se elimina del catálogo 
      * 	original de magos, si no encuentra el nombre no hace nada. 
      */
@@ -214,10 +217,12 @@ public class Menu
         if (eliminado)
         {
             System.out.println("Mago " + nombre + " eliminado correctamente.");
+            System.out.println();
         } 
         else 
         {
             System.out.println("No se encontró un mago con ese nombre.");
+            System.out.println();
         }
     }
     
@@ -248,10 +253,12 @@ public class Menu
         {
             System.out.println("Hechizo " + nombre + " eliminado correctamente.");   
             System.out.println("Los magos que hayan aprendido ese hechizo ya no lo saben.");
+            System.out.println();
         } 
         else 
         {
             System.out.println("No se encontró ningún hechizo con ese nombre.");
+            System.out.println();
         }
     }
    

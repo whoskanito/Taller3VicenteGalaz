@@ -3,8 +3,10 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.io.IOException;
+import java.io.FileNotFoundException;
 
-public class Sistema 
+public class Sistema implements ISistema
 {
     private static ArrayList<Hechizo> catalogoHechizos;
     private static ArrayList<Mago> magos;
@@ -18,11 +20,17 @@ public class Sistema
     }
 
     // Con el método iniciar comienza el programa, necesita cargar los archivos y mostrar el menú el cual se comunicará con todo el sistema.
-    public void iniciar() throws IOException 
-    {        	
+    @Override
+    public void iniciar() throws FileNotFoundException 
+    {  
+    	try 
+    	{
     	cargarHechizos();
     	cargarMagos();
         menu.mostrarMenuPrincipal();
+        }    
+        catch ( FileNotFoundException e ) { System.out.println("Archivo no encontrado"); } 
+		catch ( IOException e ) { System.out.println("Error al sobreescribir datos: " + e.getMessage()); }
     }	
     
     
